@@ -38,4 +38,37 @@ const createUser = asyncHandler(async (req, res) => {
   }
 });
 
-export { createUser };
+const loginUser = asyncHandler(async (req, res) => {
+  const { email, password } = req.body;
+
+  const existingUser = await User.findOne({ email });
+
+  if (existingUser) {
+    const isPasswordValid = await bcrypt.compare(
+      password,
+      existingUser.password
+    );
+
+    if (isPasswordValid) {
+      createToken(res, existingUser._id);
+
+      res.status(201).json({
+        _id: existingUser._id,
+        username: existingUser.username,
+        email: existingUser.email,
+        isAdmin: existingUser.isAdmin,
+      });
+      return;
+    } else {
+      const error = new Error("Password Invalid.");
+      error.statusCode = 400;
+      throw error;
+    }
+  } else {
+    const error = new Error("user doen't exits.");
+    error.statusCode = 400;
+    throw error;
+  }
+});
+
+export { createUser, loginUser };
