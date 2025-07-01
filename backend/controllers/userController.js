@@ -65,7 +65,7 @@ const loginUser = asyncHandler(async (req, res) => {
       throw error;
     }
   } else {
-    const error = new Error("user doen't exits.");
+    const error = new Error("User doen't exits.");
     error.statusCode = 400;
     throw error;
   }
