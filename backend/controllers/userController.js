@@ -129,6 +129,25 @@ const updateCurrentUserProfile = asyncHandler(async (req, res) => {
   }
 });
 
+const deleteUser = asyncHandler(async (req, res) => {
+  const user = await User.findById(req.params.id);
+
+  if (user) {
+    if (user.isAdmin) {
+      const error = new Error("Admin cannot be deleted.");
+      error.statusCode = 400;
+      throw error;
+    } else {
+      await User.deleteOne({ _id: req.params.id });
+      res.json({ message: `User with username of: ${user.username} deleted` });
+    }
+  } else {
+    const error = new Error(`User with id of ${req.params.id} doesn't exist.`);
+    error.statusCode = 404;
+    throw error;
+  }
+});
+
 export {
   createUser,
   loginUser,
@@ -136,4 +155,5 @@ export {
   getAllUsers,
   getCurrentUserProfile,
   updateCurrentUserProfile,
+  deleteUser,
 };
