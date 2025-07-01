@@ -13,12 +13,14 @@ const authenticate = asyncHandler(async (req, res, next) => {
       req.user = await User.findById(decoded.userId).select("-password");
       next();
     } catch (error) {
-      res.status(401);
-      throw new Error("Not authorized, token failed.");
+      error.statusCode = 401;
+      error.message = "Not authorized, token failed.";
+      throw error;
     }
   } else {
-    res.status(401);
-    throw new Error("Not authorized, no token.");
+    const error = new Error("Not authorized, no token.");
+    error.statusCode = 401;
+    throw error;
   }
 });
 
