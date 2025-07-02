@@ -165,6 +165,29 @@ const getUserById = asyncHandler(async (req, res) => {
   }
 });
 
+const updateUserById = asyncHandler(async (req, res) => {
+  const foundUser = await User.findById(req.params.id);
+
+  if (foundUser) {
+    foundUser.username = req.body.username || foundUser.username;
+    foundUser.email = req.body.email || foundUser.email;
+    foundUser.isAdmin = Boolean(req.body.isAdmin);
+
+    const updatedUser = await foundUser.save();
+
+    res.status(200).json({
+      _id: updatedUser._id,
+      username: updatedUser.username,
+      email: updatedUser.email,
+      isAdmin: updatedUser.isAdmin,
+    });
+  } else {
+    const error = new Error("User not found.");
+    error.statusCode = 404;
+    throw error;
+  }
+});
+
 export {
   createUser,
   loginUser,
@@ -174,4 +197,5 @@ export {
   updateCurrentUserProfile,
   deleteUser,
   getUserById,
+  updateUserById,
 };
