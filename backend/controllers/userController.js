@@ -148,6 +148,23 @@ const deleteUser = asyncHandler(async (req, res) => {
   }
 });
 
+const getUserById = asyncHandler(async (req, res) => {
+  const foundUser = await User.findById(req.params.id).select("-password");
+
+  if (!foundUser) {
+    const error = new Error("User not found.");
+    error.statusCode = 404;
+    throw error;
+  } else {
+    res.status(200).json({
+      _id: foundUser._id,
+      username: foundUser.username,
+      email: foundUser.email,
+      isAdmin: foundUser.isAdmin,
+    });
+  }
+});
+
 export {
   createUser,
   loginUser,
@@ -156,4 +173,5 @@ export {
   getCurrentUserProfile,
   updateCurrentUserProfile,
   deleteUser,
+  getUserById,
 };
