@@ -11,7 +11,7 @@ import { Link, useNavigate } from "react-router-dom";
 import "./Navigation.css";
 import { useSelector, useDispatch } from "react-redux";
 import { useLoginMutation } from "../../redux/api/usersApiSlice";
-import { logout } from "../../redux/features/auth/authSlice";
+import { logOut } from "../../redux/features/auth/authSlice";
 
 const Navigation = () => {
   const { userInfo } = useSelector((state) => state.auth);
@@ -30,7 +30,7 @@ const Navigation = () => {
   const logoutHandler = async () => {
     try {
       await logoutApiCall().unwrap();
-      dispatch(logout());
+      dispatch(logOut());
       navigate("/login");
     } catch (error) {
       console.error("Logout failed:", error);
@@ -83,7 +83,13 @@ const Navigation = () => {
         <button
           onClick={toggleDropdown}
           className="flex items-center text-gray-8000 focus:outline-none "
-        ></button>
+        >
+          {userInfo ? (
+            <span className="text-white">{userInfo.username}</span>
+          ) : (
+            <></>
+          )}
+        </button>
       </div>
 
       <ul>
