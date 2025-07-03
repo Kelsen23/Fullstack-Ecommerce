@@ -43,6 +43,12 @@ const loginUser = asyncHandler(async (req, res) => {
 
   const existingUser = await User.findOne({ email });
 
+  if (!email || !password) {
+    const error = new Error("Please fill all the inputs.");
+    error.statusCode = 400;
+    throw error;
+  }
+
   if (existingUser) {
     const isPasswordValid = await bcrypt.compare(
       password,
@@ -65,7 +71,7 @@ const loginUser = asyncHandler(async (req, res) => {
       throw error;
     }
   } else {
-    const error = new Error("User doen't exits.");
+    const error = new Error("User doesn't exits.");
     error.statusCode = 400;
     throw error;
   }
