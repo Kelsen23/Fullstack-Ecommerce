@@ -1,11 +1,11 @@
 import { useSelector } from "react-redux";
-import { Navigate, useLocation } from "react-router";
+import { Navigate, useLocation } from "react-router-dom"; 
 
 const PrivateRoute = ({ children }) => {
-  const { user } = useSelector((state) => state.auth);
+  const { userInfo } = useSelector((state) => state.auth);
   const location = useLocation();
 
-  user ? (
+  return userInfo ? (
     children
   ) : (
     <Navigate to={`/login?redirect=${location.pathname}`} replace />
