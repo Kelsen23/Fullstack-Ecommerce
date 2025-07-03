@@ -84,7 +84,7 @@ const Navigation = () => {
           className="flex items-center text-gray-800 focus:outline-none cursor-pointer"
         >
           {userInfo ? (
-            <span className="text-white">{userInfo.data.username}</span>
+            <span className="text-white">{userInfo.username}</span>
           ) : (
             <></>
           )}
@@ -111,10 +111,10 @@ const Navigation = () => {
         {dropdownOpen && userInfo && (
           <ul
             className={`absolute right-0 mt-2 mr-14 space-y-2 bg-white text-gray-600 ${
-              !userInfo.data.isAdmin ? "-top-20" : "-top-80"
+              !userInfo.isAdmin ? "-top-20" : "-top-80"
             } `}
           >
-            {userInfo.data.isAdmin && (
+            {userInfo.isAdmin && (
               <>
                 <li>
                   <Link
@@ -167,7 +167,7 @@ const Navigation = () => {
             <li>
               <button
                 onClick={logoutHandler}
-                className="block w-full px-4 py-2 text-left hover:bg-gray-100"
+                className="block w-full px-4 py-2 text-left hover:bg-gray-100 cursor-pointer"
               >
                 Logout
               </button>
