@@ -117,7 +117,7 @@ const Register = () => {
               type="submit"
               className="bg-pink-500 text-white px-4 py-2 rounded cursor-pointermy-[1rem] cursor-pointer hover:bg-pink-600 transition duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              {isLoading ? "Signing In..." : "Sign In"}
+              {isLoading ? "Registering..." : "Register"}
             </button>
 
             {isLoading && <Loader />}
@@ -130,7 +130,7 @@ const Register = () => {
                 to={redirect ? `/login?redirect=${redirect}` : "/login"}
                 className="text-pink-500 hover:underline"
               >
-                Sign In
+                Register
               </Link>
             </p>
           </div>
