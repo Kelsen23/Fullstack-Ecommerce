@@ -86,11 +86,8 @@ const Navigation = () => {
           onClick={toggleDropdown}
           className="flex items-center text-gray-800 focus:outline-none cursor-pointer"
         >
-          {userInfo ? (
-            <span className="text-white">{userInfo.username}</span>
-          ) : (
-            <></>
-          )}
+          {userInfo && <span className="text-white">{userInfo.username}</span>}
+
           {userInfo && (
             <svg
               xmlns="http://www.w3.org/2000/svg"
