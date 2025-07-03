@@ -12,6 +12,7 @@ import { useNavigate } from "react-router-dom";
 import "./Navigation.css";
 import { useSelector, useDispatch } from "react-redux";
 import { logOut } from "../../redux/features/auth/authSlice";
+import { useLogoutMutation } from "../../redux/api/usersApiSlice";
 
 const Navigation = () => {
   const { userInfo } = useSelector((state) => state.auth);
@@ -25,6 +26,8 @@ const Navigation = () => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const [logoutApiCall] = useLogoutMutation();
 
   const logoutHandler = async () => {
     try {
