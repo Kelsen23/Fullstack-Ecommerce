@@ -4,11 +4,10 @@ import {
   RouterProvider,
   createRoutesFromElements,
   createBrowserRouter,
-  Routes,
 } from "react-router";
 import "./index.css";
 import App from "./App.jsx";
-import { Provider } from "react-redux";
+import { Provider } from "react-redux"; 
 import store from "./redux/store.js";
 import Login from "./pages/Auth/Login.jsx";
 
