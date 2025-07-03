@@ -63,6 +63,7 @@ const Register = () => {
                 className="mt-1 p-2 rounded w-full bg-gray-100"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
+                required
               />
             </div>
 
@@ -77,6 +78,7 @@ const Register = () => {
                 className="mt-1 p-2 rounded w-full bg-gray-100"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+                required
               />
             </div>
 
@@ -91,6 +93,7 @@ const Register = () => {
                 className="mt-1 p-2 rounded w-full bg-gray-100"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
+                required
               />
             </div>
 
@@ -105,6 +108,7 @@ const Register = () => {
                 className="mt-1 p-2 rounded w-full bg-gray-100"
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
+                required
               />
             </div>
 
