@@ -24,6 +24,17 @@ const UserList = () => {
     refetch();
   }, [refetch]);
 
+  const deleteHandler = async (userId) => {
+    if (window.confirm("Are you sure?")) {
+      try {
+        await deleteUser(userId);
+        toast.success(`Successfully deleted user with ID of: ${userId}`);
+      } catch (error) {
+        toast.error(error?.data?.error || error?.error || "Delete failed.");
+      }
+    }
+  };
+
   return (
     <div className="ml-[5rem] p-4">
       <h1 className="text-2xl font-semibold mb-4">Users</h1>
@@ -114,6 +125,19 @@ const UserList = () => {
                       <FaCheck style={{ color: "green" }} />
                     ) : (
                       <FaTimes style={{ color: "red" }} />
+                    )}
+                  </td>
+
+                  <td className="px-4 py-2">
+                    {!user.isAdmin && (
+                      <div className="flex">
+                        <button
+                          onClick={() => deleteHandler(user._id)}
+                          className="bg-red-600 hover:bg-red-700 text-white font-bold cursor-pointer px-3 py-1 rounded"
+                        >
+                          <FaTrash />
+                        </button>
+                      </div>
                     )}
                   </td>
                 </tr>
