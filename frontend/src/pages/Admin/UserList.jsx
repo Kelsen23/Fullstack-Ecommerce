@@ -5,7 +5,6 @@ import { toast } from "react-toastify";
 import {
   useGetUsersQuery,
   useDeleteUserMutation,
-  useGetUserDetailsQuery,
   useUpdateUserMutation,
 } from "../../redux/api/usersApiSlice";
 import Message from "../../components/Message";
