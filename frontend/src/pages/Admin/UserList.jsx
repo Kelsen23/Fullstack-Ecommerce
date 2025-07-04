@@ -28,6 +28,7 @@ const UserList = () => {
     if (window.confirm("Are you sure?")) {
       try {
         await deleteUser(userId);
+        refetch();
         toast.success(`Successfully deleted user with ID of: ${userId}`);
       } catch (error) {
         toast.error(error?.data?.error || error?.error || "Delete failed.");
@@ -35,8 +36,8 @@ const UserList = () => {
     }
   };
 
-  const toggleEdit = (id, username, email) => {
-    setEditableUserId(id), setEditableUsername(username);
+  const toggleEdit = (userId, username, email) => {
+    setEditableUserId(userId), setEditableUsername(username);
     setEditableUserEmail(email);
   };
 
@@ -84,14 +85,16 @@ const UserList = () => {
                     ) : (
                       <div className="flex items-center">
                         {user.username}{" "}
-                        <button
-                          onClick={() =>
-                            toggleEdit(user._id, user.username, user.email)
-                          }
-                          className="cursor-pointer"
-                        >
-                          <FaEdit className="ml-[1rem]" />
-                        </button>
+                        {!user.isAdmin && (
+                          <button
+                            onClick={() =>
+                              toggleEdit(user._id, user.username, user.email)
+                            }
+                            className="cursor-pointer"
+                          >
+                            <FaEdit className="ml-[1rem]" />
+                          </button>
+                        )}
                       </div>
                     )}
                   </td>
@@ -114,14 +117,16 @@ const UserList = () => {
                     ) : (
                       <div className="flex items-center">
                         {user.email}{" "}
-                        <button
-                          onClick={() =>
-                            toggleEdit(user._id, user.username, user.email)
-                          }
-                          className="cursor-pointer"
-                        >
-                          <FaEdit className="ml-[1rem]" />
-                        </button>
+                        {!user.isAdmin && (
+                          <button
+                            onClick={() =>
+                              toggleEdit(user._id, user.username, user.email)
+                            }
+                            className="cursor-pointer"
+                          >
+                            <FaEdit className="ml-[1rem]" />
+                          </button>
+                        )}
                       </div>
                     )}
                   </td>
