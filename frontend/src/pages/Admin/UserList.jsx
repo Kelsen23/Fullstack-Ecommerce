@@ -41,6 +41,21 @@ const UserList = () => {
     setEditableUserEmail(email);
   };
 
+  const updateHandler = async (userId) => {
+    try {
+      await updateUser({
+        userId,
+        username: editableUsername,
+        email: editableUserEmail,
+      });
+      setEditableUserId(null);
+      refetch();
+      toast.success("Successfully updated user");
+    } catch (error) {
+      toast.error(error?.data?.error || error?.error || "Update failed.");
+    }
+  };
+
   return (
     <div className="ml-[5rem] p-4">
       <h1 className="text-2xl font-semibold mb-4">Users</h1>
