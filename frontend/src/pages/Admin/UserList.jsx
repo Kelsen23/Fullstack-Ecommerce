@@ -35,6 +35,11 @@ const UserList = () => {
     }
   };
 
+  const toggleEdit = (id, username, email) => {
+    setEditableUserId(id), setEditableUsername(username);
+    setEditableUserEmail(email);
+  };
+
   return (
     <div className="ml-[5rem] p-4">
       <h1 className="text-2xl font-semibold mb-4">Users</h1>
