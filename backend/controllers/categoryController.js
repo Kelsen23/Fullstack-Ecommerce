@@ -99,7 +99,7 @@ const deleteCategory = asyncHandler(async (req, res) => {
   });
 });
 
-const listCategory = asyncHandler(async (res, req) => {
+const listCategory = asyncHandler(async (req, res) => {
   const categories = await Category.find({});
   res.json(categories);
 });
