@@ -1,5 +1,6 @@
 import asyncHandler from "../middlewares/asyncHandler.js";
 import Category from "../models/categoryModel.js";
+import mongoose from "mongoose";
 
 const createCategory = asyncHandler(async (req, res) => {
   const name = req.body.name?.trim().toLowerCase();
@@ -104,4 +105,35 @@ const listCategory = asyncHandler(async (req, res) => {
   res.json(categories);
 });
 
-export { createCategory, updateCategory, deleteCategory, listCategory };
+const readCategory = asyncHandler(async (req, res) => {
+  const { categoryId } = req.params;
+
+  if (!categoryId) {
+    const error = new Error("Please provide a category id.");
+    error.statusCode = 400;
+    throw error;
+  }
+
+  if (!mongoose.Types.ObjectId.isValid(categoryId)) {
+    return res.status(404).json({ error: "Category not found." });
+  }
+
+  const foundCategory = await Category.findById(categoryId);
+
+  if (!foundCategory) {
+    return res.status(404).json({ error: "Category not found." });
+  }
+
+  res.status(200).json({
+    _id: foundCategory._id,
+    name: foundCategory.name,
+  });
+});
+
+export {
+  createCategory,
+  updateCategory,
+  deleteCategory,
+  listCategory,
+  readCategory,
+};
