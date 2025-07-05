@@ -8,6 +8,7 @@ import {
   updateCategory,
   deleteCategory,
   listCategory,
+  readCategory
 } from "../controllers/categoryController.js";
 const router = express.Router();
 
@@ -17,5 +18,6 @@ router
   .route("/:categoryId")
   .delete(authenticate, authorizedAdmin, deleteCategory);
 router.route("/categories").get(listCategory);
+router.route("/:categoryId").get(readCategory);
 
 export default router;
