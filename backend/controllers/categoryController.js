@@ -28,4 +28,49 @@ const createCategory = asyncHandler(async (req, res) => {
   }
 });
 
-export { createCategory };
+const updateCategory = asyncHandler(async (req, res) => {
+  const name = req.body.name?.trim().toLowerCase();
+  const { categoryId } = req.params;
+
+  if (!name) {
+    const error = new Error("Please provide a name.");
+    error.statusCode = 400;
+    throw error;
+  }
+  if (!categoryId) {
+    const error = new Error("Please provide a category id.");
+    error.statusCode = 400;
+    throw error;
+  }
+
+  const existingCategory = await Category.findOne({ name });
+  if (existingCategory && existingCategory._id.toString() !== categoryId) {
+    const error = new Error("Category with provided name already exists.");
+    error.statusCode = 400;
+    throw error;
+  }
+
+  const categoryToUpdate = await Category.findById(categoryId);
+
+  if (!categoryToUpdate)
+    return res
+      .status(404)
+      .json({ error: "Category with provided id doesn't exist." });
+  else {
+    try {
+      categoryToUpdate.name = name;
+      const updatedCategory = await categoryToUpdate.save();
+      res.status(200).json({
+        _id: updatedCategory._id,
+        name: updatedCategory.name,
+      });
+    } catch (error) {
+      if (error.code === 11000) {
+        return res.status(400).json({ error: "Category already exists." });
+      }
+      throw error;
+    }
+  }
+});
+
+export { createCategory, updateCategory };
