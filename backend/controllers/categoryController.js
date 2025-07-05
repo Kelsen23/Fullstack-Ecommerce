@@ -99,4 +99,9 @@ const deleteCategory = asyncHandler(async (req, res) => {
   });
 });
 
-export { createCategory, updateCategory, deleteCategory };
+const listCategory = asyncHandler(async (res, req) => {
+  const categories = await Category.find({});
+  res.json(categories);
+});
+
+export { createCategory, updateCategory, deleteCategory, listCategory };
