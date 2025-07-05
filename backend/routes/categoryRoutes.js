@@ -6,6 +6,6 @@ import {
 import { createCategory } from "../controllers/categoryController.js";
 const router = express.Router();
 
-router.route("/").post(authenticate, createCategory);
+router.route("/").post(authenticate, authorizedAdmin, createCategory);
 
 export default router;
