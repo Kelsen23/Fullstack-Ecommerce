@@ -39,7 +39,7 @@ const Register = () => {
         toast.success("Registration successful");
       } catch (error) {
         console.error("Register Error:", error);
-        toast.error(error?.data?.error || error.error || "Register failed");
+        toast.error(error?.data?.error || error?.error || "Register failed");
       }
     } else {
       toast.error("Passwords do not match");
