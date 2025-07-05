@@ -73,4 +73,30 @@ const updateCategory = asyncHandler(async (req, res) => {
   }
 });
 
-export { createCategory, updateCategory };
+const deleteCategory = asyncHandler(async (req, res) => {
+  const { categoryId } = req.params;
+
+  if (!categoryId) {
+    const error = new Error("Please provide a category id.");
+    error.statusCode = 400;
+    throw error;
+  }
+
+  const existingCategory = await Category.findById(categoryId);
+  if (!existingCategory) {
+    const error = new Error("Category with provided id doesn't exist.");
+    error.statusCode = 404;
+    throw error;
+  }
+
+  await Category.deleteOne({ _id: categoryId });
+  res.json({
+    message: "Successfully deleted category",
+    deletedCategory: {
+      _id: existingCategory._id,
+      name: existingCategory.name,
+    },
+  });
+});
+
+export { createCategory, updateCategory, deleteCategory };
