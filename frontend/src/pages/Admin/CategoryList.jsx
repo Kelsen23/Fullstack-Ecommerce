@@ -38,6 +38,47 @@ const CategoryList = () => {
     }
   };
 
+  const handleUpdateCategory = async (e) => {
+    e.preventDefault();
+
+    if (!updatingName) {
+      toast.error("Category name is required!");
+      return;
+    }
+
+    try {
+      const res = await updateCategory({
+        categoryId: selectedCategory._id,
+        updatedCategory: {
+          name: updatingName,
+        },
+      }).unwrap();
+      refetch();
+      toast.success(`${res.name} is updated`);
+      setSelectedCategory(null);
+      setUpdatingName("");
+      setModalVisible(false);
+    } catch (error) {
+      console.error(error);
+      toast.error(error?.data?.error || error?.error || "Update failed");
+    }
+  };
+
+  const handleDeleteCategory = async (e) => {
+    e.preventDefault();
+
+    try {
+      const res = await deleteCategory(selectedCategory._id).unwrap();
+      refetch();
+      toast.success(`Successfully deleted.`);
+      setSelectedCategory(null);
+      setModalVisible(false);
+    } catch (error) {
+      console.error(error);
+      toast.error(error?.data?.error || error?.error || "Delete Failed.");
+    }
+  };
+
   return (
     <div className="ml-[10rem] flex flex-col md:flex-row">
       <div className="md:w-3/4 p-3">
