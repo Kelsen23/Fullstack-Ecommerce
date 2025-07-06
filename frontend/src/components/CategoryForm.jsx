@@ -23,7 +23,9 @@ const CategoryForm = ({
         </div>
 
         {handleDelete && (
-          <button onClick={handleDelete} className="bg-red-500 text-white py-2 px-4 rounded-lg hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50"></button>
+          <button onClick={handleDelete} className="bg-red-500 text-white py-2 px-4 rounded-lg hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50">
+            Delete
+          </button>
         )}
       </form>
     </div>
