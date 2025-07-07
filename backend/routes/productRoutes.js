@@ -7,7 +7,8 @@ import {
   updateProduct,
   deleteProduct,
   fetchProducts,
-  fetchProductById
+  fetchProductById,
+  fetchAllProducts,
 } from "../controllers/productController.js";
 
 import {
@@ -20,6 +21,8 @@ router
   .route("/")
   .get(fetchProducts)
   .post(authenticate, authorizedAdmin, formidable(), addProduct);
+
+router.route("/allproducts").get(fetchAllProducts);
 
 router
   .route("/:id")
