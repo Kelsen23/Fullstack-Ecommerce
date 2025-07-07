@@ -1,7 +1,7 @@
 import asyncHandler from "../middlewares/asyncHandler.js";
 import Product from "../models/productModel.js";
 import findEmptyField from "../utils/findEmptyField.js";
-import mongoose from "mongoose"
+import mongoose from "mongoose";
 
 const addProduct = asyncHandler(async (req, res) => {
   const requiredFields = [
@@ -39,12 +39,6 @@ const updateProduct = asyncHandler(async (req, res) => {
     return res.status(400).json({ error: "Invalid product id." });
   }
 
-  if (!id) {
-    const error = new Error("Please provide id.");
-    error.statusCode = 400;
-    throw error;
-  }
-
   const errorMessage = findEmptyField(req.fields, requiredFields);
   if (errorMessage) {
     return res.status(400).json({ error: errorMessage });
@@ -68,12 +62,6 @@ const deleteProduct = asyncHandler(async (req, res) => {
 
   if (!mongoose.Types.ObjectId.isValid(id)) {
     return res.status(400).json({ error: "Invalid product id." });
-  }
-
-  if (!id) {
-    const error = new Error("Please provide id.");
-    error.statusCode = 400;
-    throw error;
   }
 
   const product = await Product.findByIdAndDelete(id);
