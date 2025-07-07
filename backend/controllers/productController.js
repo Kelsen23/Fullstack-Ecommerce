@@ -164,6 +164,13 @@ const fetchTopProducts = asyncHandler(async (req, res) => {
   res.json(products);
 });
 
+const fetchNewProducts = asyncHandler(async (req, res) => {
+  const products = await Product.find({})
+    .sort({ createdAt: -1, numReviews: -1 }) 
+    .limit(5);
+  res.json(products);
+});
+
 export {
   addProduct,
   updateProduct,
@@ -173,4 +180,5 @@ export {
   fetchAllProducts,
   addProductReview,
   fetchTopProducts,
+  fetchNewProducts,
 };
