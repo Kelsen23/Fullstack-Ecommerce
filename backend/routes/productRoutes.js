@@ -9,6 +9,7 @@ import {
   fetchProducts,
   fetchProductById,
   fetchAllProducts,
+  addProductReview
 } from "../controllers/productController.js";
 
 import {
@@ -23,6 +24,7 @@ router
   .post(authenticate, authorizedAdmin, formidable(), addProduct);
 
 router.route("/allproducts").get(fetchAllProducts);
+router.route("/:id/reviews").post(authenticate, authorizedAdmin, addProductReview);
 
 router
   .route("/:id")
