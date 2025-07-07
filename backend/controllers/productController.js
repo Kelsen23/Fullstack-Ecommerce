@@ -157,6 +157,13 @@ const addProductReview = asyncHandler(async (req, res) => {
   }
 });
 
+const fetchTopProducts = asyncHandler(async (req, res) => {
+  const products = await Product.find({})
+    .sort({ rating: -1, numReviews: -1 })
+    .limit(4);
+  res.json(products);
+});
+
 export {
   addProduct,
   updateProduct,
@@ -165,4 +172,5 @@ export {
   fetchProductById,
   fetchAllProducts,
   addProductReview,
+  fetchTopProducts,
 };
