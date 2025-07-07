@@ -7,6 +7,7 @@ import {
   updateProduct,
   deleteProduct,
   fetchProducts,
+  fetchProductById
 } from "../controllers/productController.js";
 
 import {
@@ -22,6 +23,7 @@ router
 
 router
   .route("/:id")
+  .get(fetchProductById)
   .put(authenticate, authorizedAdmin, formidable(), updateProduct)
   .delete(authenticate, authorizedAdmin, deleteProduct);
 
