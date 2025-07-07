@@ -6,6 +6,7 @@ import {
   addProduct,
   updateProduct,
   deleteProduct,
+  fetchProducts,
 } from "../controllers/productController.js";
 
 import {
@@ -14,7 +15,11 @@ import {
 } from "../middlewares/authMiddleware.js";
 import checkId from "../middlewares/checkId.js";
 
-router.route("/").post(authenticate, authorizedAdmin, formidable(), addProduct);
+router
+  .route("/")
+  .get(fetchProducts)
+  .post(authenticate, authorizedAdmin, formidable(), addProduct);
+
 router
   .route("/:id")
   .put(authenticate, authorizedAdmin, formidable(), updateProduct)
