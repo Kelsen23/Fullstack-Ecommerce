@@ -1,6 +1,7 @@
 import asyncHandler from "../middlewares/asyncHandler.js";
 import Product from "../models/productModel.js";
 import findEmptyField from "../utils/findEmptyField.js";
+import mongoose from "mongoose"
 
 const addProduct = asyncHandler(async (req, res) => {
   const requiredFields = [
@@ -104,4 +105,26 @@ const fetchProducts = asyncHandler(async (req, res) => {
   });
 });
 
-export { addProduct, updateProduct, deleteProduct, fetchProducts };
+const fetchProductById = asyncHandler(async (req, res) => {
+  const { id } = req.params;
+
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(400).json({ error: "Invalid product id." });
+  }
+
+  const foundProduct = await Product.findById(id);
+
+  if (!foundProduct) {
+    return res.status(404).json({ error: "Product doesn't exist." });
+  } else {
+    res.json(foundProduct);
+  }
+});
+
+export {
+  addProduct,
+  updateProduct,
+  deleteProduct,
+  fetchProducts,
+  fetchProductById,
+};
