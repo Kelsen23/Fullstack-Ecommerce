@@ -34,6 +34,10 @@ const updateProduct = asyncHandler(async (req, res) => {
     "brand",
   ];
 
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(400).json({ error: "Invalid product id." });
+  }
+
   if (!id) {
     const error = new Error("Please provide id.");
     error.statusCode = 400;
@@ -62,7 +66,7 @@ const deleteProduct = asyncHandler(async (req, res) => {
   const { id } = req.params;
 
   if (!mongoose.Types.ObjectId.isValid(id)) {
-    return res.status(400).json({ error: "Invalid product ID." });
+    return res.status(400).json({ error: "Invalid product id." });
   }
 
   if (!id) {
