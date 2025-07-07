@@ -13,7 +13,7 @@ const addProduct = asyncHandler(async (req, res) => {
     "brand",
   ];
 
-  const errorMessage = requiredFields(req.fields, requiredFields);
+  const errorMessage = findEmptyField(req.fields, requiredFields);
   if (errorMessage) {
     return res.status(400).json({ error: errorMessage });
   }
