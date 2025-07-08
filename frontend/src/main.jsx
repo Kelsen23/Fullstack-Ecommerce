@@ -65,7 +65,7 @@ const router = createBrowserRouter(
         }
       />
       <Route
-        path="product/update/:_id"
+        path="/admin/product/update/:_id"
         element={
           <AdminRoute>
             <ProductUpdate />
