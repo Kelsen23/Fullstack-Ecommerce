@@ -89,7 +89,7 @@ const ProductList = () => {
           )}
 
           <div className="mb-3">
-            <label className="border text-white px-4 block w-full text-center rounded-lg cursor-pointer font-bold py-11 bg-gray-700">
+            <label className="text-black border-1 px-4 block w-full text-center rounded-lg cursor-pointer font-bold py-10 bg-white">
               {image ? "Image Selected" : "Upload Image"}
               <input
                 type="file"
