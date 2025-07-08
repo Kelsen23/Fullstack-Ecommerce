@@ -45,7 +45,7 @@ const ProductList = () => {
     } catch (error) {
       console.error(error);
       toast.error(
-        error?.data?.message || error?.error || "Failed to create product"
+        error?.data?.error || error?.error || "Failed to create product"
       );
     }
   };
@@ -68,7 +68,7 @@ const ProductList = () => {
       );
     } catch (error) {
       toast.error(
-        error?.data?.message || error?.error || "Image upload failed"
+        error?.data?.error || error?.error || "Image upload failed"
       );
     }
   };
