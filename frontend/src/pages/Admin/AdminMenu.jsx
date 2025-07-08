@@ -68,6 +68,18 @@ const AdminMenu = () => {
                 <li>
                   <NavLink
                     className="list-item py-2 px-3 mb-5 hover:bg-[#2E2D2D] rounded-sm"
+                    to="/admin/allproducts"
+                    style={({ isActive }) => ({
+                      color: isActive ? "greenyellow" : "white",
+                    })}
+                  >
+                    All Products
+                  </NavLink>
+                </li>
+
+                <li>
+                  <NavLink
+                    className="list-item py-2 px-3 mb-5 hover:bg-[#2E2D2D] rounded-sm"
                     to="/admin/userlist"
                     style={({ isActive }) => ({
                       color: isActive ? "greenyellow" : "white",
