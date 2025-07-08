@@ -78,3 +78,15 @@ const productApiSlice = apiSlice.injectEndpoints({
     }),
   }),
 });
+
+export const {
+  useGetProductsQuery,
+  useGetProductByIdQuery,
+  useAllProductsQuery,
+  useCreateProductMutation,
+  useUpdateProductsMutation,
+  useDeleteProductMutation,
+  useCreateReviewMutation,
+  useGetTopProductQuery,
+  useGetNewProductsQuery,
+} = productApiSlice;
