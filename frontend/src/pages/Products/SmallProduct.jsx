@@ -1,4 +1,4 @@
-import { Link } from "react-router";
+import { Link } from "react-router-dom";
 
 const SmallProduct = ({ product }) => {
   return (
@@ -7,18 +7,19 @@ const SmallProduct = ({ product }) => {
         <img
           src={product.image}
           alt={product.name}
-          className="h-auto rounded"
+          className="h-[12rem] w-full rounded"
         />
-        <div className="p-54">
-          <Link to={`/product/${product._id}`}>
-            <h2 className="flex jusify-between items-center">
-              <div>{product.name}</div>
-              <span className="bg-pink-100 text-pink-800 text-sm font-medium mr-2 px-2 py-0.5 rounded-full dark:bg-pink-900 dark:text-pink-300">
-                ${product.price}
-              </span>
-            </h2>
-          </Link>
-        </div>
+      </div>
+
+      <div className="p-4">
+        <Link to={`/product/${product._id}`}>
+          <h2 className="flex justify-between items-center">
+            <div>{product.name}</div>
+            <span className="bg-pink-100 text-pink-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full dark:bg-pink-900 dark:text-pink-300">
+              ${product.price}
+            </span>
+          </h2>
+        </Link>
       </div>
     </div>
   );
