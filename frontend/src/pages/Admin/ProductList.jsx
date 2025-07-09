@@ -125,6 +125,8 @@ const ProductList = () => {
                   className="p-4 mb-3 w-[30rem] border rounded-lg block"
                   value={price}
                   onChange={(e) => setPrice(e.target.value)}
+                  min={0.1}
+                  step="0.05"
                   required
                 />
               </div>
@@ -139,6 +141,7 @@ const ProductList = () => {
                   className="p-4 mb-3 w-[30rem] border rounded-lg block"
                   value={quantity}
                   onChange={(e) => setQuantity(e.target.value)}
+                  min={0}
                   required
                 />
               </div>
