@@ -32,46 +32,13 @@ const router = createBrowserRouter(
         }
       />
 
-      <Route
-        path="/admin/userlist"
-        element={
-          <AdminRoute>
-            <UserList />
-          </AdminRoute>
-        }
-      />
-      <Route
-        path="/admin/categorylist"
-        element={
-          <AdminRoute>
-            <CategoryList />
-          </AdminRoute>
-        }
-      />
-      <Route
-        path="/admin/productlist/:pageNumber"
-        element={
-          <AdminRoute>
-            <ProductList />
-          </AdminRoute>
-        }
-      />
-      <Route
-        path="/admin/allproductslist"
-        element={
-          <AdminRoute>
-            <AllProducts />
-          </AdminRoute>
-        }
-      />
-      <Route
-        path="/admin/product/update/:_id"
-        element={
-          <AdminRoute>
-            <ProductUpdate />
-          </AdminRoute>
-        }
-      />
+      <Route path="/admin" element={<AdminRoute />}>
+        <Route path="/admin/userlist" element={<UserList />} />
+        <Route path="/admin/categorylist" element={<CategoryList />} />
+        <Route path="/admin/productlist/" element={<ProductList />} />
+        <Route path="/admin/allproductslist" element={<AllProducts />} />
+        <Route path="/admin/product/update/:_id" element={<ProductUpdate />} />
+      </Route>
 
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
