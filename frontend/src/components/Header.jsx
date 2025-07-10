@@ -11,7 +11,7 @@ const Header = () => {
     return <h1 className="text-red-500 text-center">Something went wrong.</h1>;
 
   return (
-    <div className="px-8 py-6 flex justify-center gap-10">
+    <div className="px-8 py-6 flex items-start justify-center">
       <div className="hidden xl:flex">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-2">
           {data.map((product) => (
