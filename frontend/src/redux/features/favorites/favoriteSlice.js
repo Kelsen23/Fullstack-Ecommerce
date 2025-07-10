@@ -10,7 +10,7 @@ const favoriteSlice = createSlice({
       }
     },
     removeFromFavorites: (state, action) => {
-      return state.filter((product) => product._id !== action.payload._id);
+      return state.filter((product) => product._id !== action.payload);
     },
     setFavorites: (state, action) => {
       return action.payload;
