@@ -51,7 +51,7 @@ const router = createBrowserRouter(
         }
       />
       <Route
-        path="/products/:_id"
+        path="/product/:_id"
         element={
           <PrivateRoute>
             <ProductDetails />
