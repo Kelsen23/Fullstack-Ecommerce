@@ -2,12 +2,12 @@ import { Link } from "react-router-dom";
 
 const SmallProduct = ({ product }) => {
   return (
-    <div className="w-[20rem] ml-[2rem] p-3">
+    <div className="w-[19rem] ml-[2rem] p-3">
       <div className="relative">
         <img
           src={product.image}
           alt={product.name}
-          className="h-[12rem] w-full rounded"
+          className="h-[11rem] w-[16rem] rounded"
         />
       </div>
 
