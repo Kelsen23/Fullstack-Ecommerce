@@ -45,6 +45,25 @@ const ProductDetails = () => {
   const sp = new URLSearchParams(search);
   const redirect = sp.get("redirect") || "/";
 
+  const submitHandler = async (e) => {
+    e.preventDefault();
+
+    try {
+      await createReview({
+        productId,
+        rating,
+        comment,
+      }).unwrap();
+      refetch();
+      toast.success("Review successfully published");
+    } catch (error) {
+      console.error("Error creating review.");
+      toast.error(
+        error?.data?.error || error?.error || "Error creating review."
+      );
+    }
+  };
+
   return (
     <>
       <div>
@@ -143,7 +162,7 @@ const ProductDetails = () => {
 
                   <div>
                     <button
-                      className="flex items-center gap-2 bg-pink-600 text-white py-2 px-4 rounded-lg mt-4 md:mt-0 cursor-pointer"
+                      className="flex items-center gap-2 bg-pink-600 text-white py-2 px-4 rounded-lg mt-5 md:mt-0 cursor-pointer"
                       // onClick={addToCartHandler}
                       disabled={product.countStock < 1}
                     >
@@ -158,7 +177,7 @@ const ProductDetails = () => {
                 <ProductTabs
                   loadingProductReview={loadingProductReview}
                   userInfo={userInfo}
-                  // submitHandler={submitHandler}
+                  submitHandler={submitHandler}
                   rating={rating}
                   setRating={setRating}
                   comment={comment}
