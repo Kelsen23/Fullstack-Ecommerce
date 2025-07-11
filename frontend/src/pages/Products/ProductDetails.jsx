@@ -122,7 +122,8 @@ const ProductDetails = () => {
 
                     <div>
                       <h1 className="flex whitespace-nowrap items-center mb-6">
-                        <FaStar className="mr-2" /> Ratings: {product.rating}
+                        <FaStar className="mr-2" /> Ratings:{" "}
+                        {product.rating.toFixed(2)}
                       </h1>
 
                       <h1 className="flex whitespace-nowrap items-center mb-6">
