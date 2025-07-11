@@ -26,7 +26,7 @@ router
   .post(authenticate, authorizedAdmin, formidable(), addProduct);
 
 router.route("/allproducts").get(fetchAllProducts);
-router.route("/:id/reviews").post(authenticate, authorizedAdmin, addProductReview);
+router.route("/:id/reviews").post(authenticate, addProductReview);
 router.get("/top", fetchTopProducts);
 router.get("/new", fetchNewProducts);
 
