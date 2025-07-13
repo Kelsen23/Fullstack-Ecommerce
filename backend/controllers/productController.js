@@ -166,8 +166,19 @@ const fetchTopProducts = asyncHandler(async (req, res) => {
 
 const fetchNewProducts = asyncHandler(async (req, res) => {
   const products = await Product.find({})
-    .sort({ createdAt: -1, numReviews: -1 }) 
+    .sort({ createdAt: -1, numReviews: -1 })
     .limit(5);
+  res.json(products);
+});
+
+const filteredProducts = asyncHandler(async (req, res) => {
+  const { checked, radio } = req.body;
+
+  let args = {};
+  if (checked.length > 0) args.category = checked;
+  if (radio.length > 0) args.price = { $gte: radio[0], $lte: radio[1] };
+
+  const products = await Product.find(args);
   res.json(products);
 });
 
@@ -181,4 +192,5 @@ export {
   addProductReview,
   fetchTopProducts,
   fetchNewProducts,
+  filteredProducts,
 };
