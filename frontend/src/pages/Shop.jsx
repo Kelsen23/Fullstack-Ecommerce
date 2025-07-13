@@ -9,6 +9,7 @@ import {
   setProducts,
 } from "../redux/features/shop/shopSlice";
 import Loader from "../components/Loader";
+import ProductCard from "./Products/ProductCard";
 
 const Shop = () => {
   const dispatch = useDispatch();
@@ -89,7 +90,7 @@ const Shop = () => {
                       type="checkbox"
                       id={`cat-${c._id}`}
                       onChange={(e) => handleCheck(e.target.checked, c._id)}
-                      className="w-4 h-4 text-pink-600 bg-gray-100 border-gray-300 rounded focus:ring-pink-500"
+                      className="w-4 h-4 accent-pink-600 rounded focus:ring-pink-500"
                     />
                     <label
                       htmlFor={`cat-${c._id}`}
@@ -114,7 +115,7 @@ const Shop = () => {
                     id={`brand-${brand}`}
                     name="brand"
                     onChange={() => handleBrandClick(brand)}
-                    className="w-4 h-4 text-pink-600 bg-white border-gray-300 focus:ring-pink-500"
+                    className="w-4 h-4 accent-pink-600 rounded focus:ring-pink-500"
                   />
                   <label
                     htmlFor={`brand-${brand}`}
@@ -149,6 +150,21 @@ const Shop = () => {
               >
                 Reset
               </button>
+            </div>
+          </div>
+
+          <div className="p-3">
+            <h2 className="mb-2">{products?.length} Products</h2>
+            <div className="flex flex-wrap">
+              {products?.length < 1 ? (
+                <Loader />
+              ) : (
+                products?.map((p) => (
+                  <div className="p-3" key={p._id}>
+                    <ProductCard product={p} />
+                  </div>
+                ))
+              )}
             </div>
           </div>
         </div>
