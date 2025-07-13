@@ -1,4 +1,4 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useParams, Link, useNavigate, useLocation } from "react-router";
 import { toast } from "react-toastify";
 import {
@@ -21,10 +21,12 @@ import { useState } from "react";
 import Product from "./Product";
 import Ratings from "./Ratings";
 import ProductTabs from "./ProductTabs";
+import { addToCart } from "../../redux/features/cart/cartSlice";
 
 const ProductDetails = () => {
   const { _id: productId } = useParams();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const [qty, setQty] = useState(1);
   const [rating, setRating] = useState(0);
@@ -62,6 +64,12 @@ const ProductDetails = () => {
         error?.data?.error || error?.error || "Error creating review."
       );
     }
+  };
+
+  const addToCartHandler = () => {
+    dispatch(addToCart({ ...product, qty }));
+    navigate("/cart");
+    toast.success("Item added to cart");
   };
 
   return (
@@ -164,7 +172,7 @@ const ProductDetails = () => {
                   <div>
                     <button
                       className="flex items-center gap-2 bg-pink-600 text-white py-2 px-4 rounded-lg mt-5 md:mt-0 cursor-pointer"
-                      // onClick={addToCartHandler}
+                      onClick={addToCartHandler}
                       disabled={product.countStock < 1}
                     >
                       <MdOutlineAddShoppingCart size={18} />
