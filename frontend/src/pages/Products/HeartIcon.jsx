@@ -12,7 +12,7 @@ import {
 } from "../../Utils/localStorage";
 import { useEffect } from "react";
 
-const HeartIcon = ({ product }) => {
+const HeartIcon = ({ product, className="" }) => {
   const dispatch = useDispatch();
   const favorites = useSelector((state) => state.favorites) || [];
   const isFavorited = favorites.some((p) => p._id === product._id);
@@ -37,7 +37,7 @@ const HeartIcon = ({ product }) => {
       onClick={toggleFavorites}
       className="cursor-pointer"
     >
-      {isFavorited ? <FaHeart className="text-pink-500" /> : <FaRegHeart />}
+      {isFavorited ? <FaHeart className={`text-pink-500 ${className}`} /> : <FaRegHeart className={`${className}`} />}
     </div>
   );
 };
