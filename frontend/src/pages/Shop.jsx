@@ -74,7 +74,41 @@ const Shop = () => {
     setPriceFilter(e.target.value);
   };
 
-  return <></>;
+  return (
+    <>
+      <div className="container ml-[3rem] mx-auto">
+        <div className="flex md:flex-row">
+          <div className="p-3 mt-2 mb-2">
+            <h2 className="text-center py-2 rounded-full mb-2">
+              Filter By Categories
+            </h2>
+
+            <div className="p-5 w-[15rem]">
+              {categories?.map((c) => (
+                <div key={c._id} className="mb-2">
+                  <div className="flex items-center mr-4">
+                    <input
+                      type="checkbox"
+                      id="red-checkbox"
+                      onChange={(e) => handleCheck(e.target.checked, c._id)}
+                      className="w-4 h-4 text-pink-600 bg-gray-100 border-gray-300 rounded focus:ring-pink-500 focus:ring-2 "
+                    />
+
+                    <label
+                      htmlFor="pink-checkbox"
+                      className="ml-2 text-sm font-medium"
+                    >
+                      {c.name}
+                    </label>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+  );
 };
 
 export default Shop;
