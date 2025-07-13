@@ -70,32 +70,29 @@ const Shop = () => {
     ),
   ];
 
-  const handlePriceChange = (e) => {
-    setPriceFilter(e.target.value);
-  };
+  const handlePriceChange = (e) => setPriceFilter(e.target.value);
 
   return (
     <>
-      <div className="container ml-[3rem] mx-auto">
-        <div className="flex md:flex-row">
-          <div className="p-3 mt-2 mb-2">
-            <h2 className="text-center py-2 rounded-full mb-2">
+      <div className="container ml-[4rem] mx-auto px-4">
+        <div className="flex md:flex-row gap-4">
+          <div className="p-3 mt-2 mb-2 w-full md:w-[16rem] bg-gray-50 rounded shadow">
+            <h2 className="text-center text-white bg-black py-1 rounded-full mb-3 text-sm">
               Filter By Categories
             </h2>
 
-            <div className="p-5 w-[15rem]">
+            <div className="p-2">
               {categories?.map((c) => (
                 <div key={c._id} className="mb-2">
-                  <div className="flex items-center mr-4">
+                  <div className="flex items-center">
                     <input
                       type="checkbox"
-                      id="red-checkbox"
+                      id={`cat-${c._id}`}
                       onChange={(e) => handleCheck(e.target.checked, c._id)}
-                      className="w-4 h-4 text-pink-600 bg-gray-100 border-gray-300 rounded focus:ring-pink-500 focus:ring-2 "
+                      className="w-4 h-4 text-pink-600 bg-gray-100 border-gray-300 rounded focus:ring-pink-500"
                     />
-
                     <label
-                      htmlFor="pink-checkbox"
+                      htmlFor={`cat-${c._id}`}
                       className="ml-2 text-sm font-medium"
                     >
                       {c.name}
@@ -103,6 +100,55 @@ const Shop = () => {
                   </div>
                 </div>
               ))}
+            </div>
+
+            <h2 className="text-center text-white bg-black py-1 rounded-full mb-3 text-sm">
+              Filter By Brands
+            </h2>
+
+            <div className="p-2">
+              {uniqueBrands?.map((brand, idx) => (
+                <div key={idx} className="flex items-center mb-3">
+                  <input
+                    type="radio"
+                    id={`brand-${brand}`}
+                    name="brand"
+                    onChange={() => handleBrandClick(brand)}
+                    className="w-4 h-4 text-pink-600 bg-white border-gray-300 focus:ring-pink-500"
+                  />
+                  <label
+                    htmlFor={`brand-${brand}`}
+                    className="ml-2 text-sm font-medium"
+                  >
+                    {brand}
+                  </label>
+                </div>
+              ))}
+            </div>
+
+            <h2 className="text-center text-white bg-black py-1 rounded-full mb-3 text-sm">
+              Filter By Price
+            </h2>
+
+            <div className="p-2">
+              <input
+                type="number"
+                placeholder="Enter Price"
+                value={priceFilter}
+                step={0.5}
+                min={0.5}
+                onChange={handlePriceChange}
+                className="w-full px-3 py-2 text-sm border rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-pink-500 transition duration-150"
+              />
+            </div>
+
+            <div className="p-5 pt-0">
+              <button
+                className="w-full border my-4"
+                onClick={() => window.location.reload()}
+              >
+                Reset
+              </button>
             </div>
           </div>
         </div>
