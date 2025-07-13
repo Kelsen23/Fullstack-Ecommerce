@@ -44,7 +44,7 @@ const Shop = () => {
         dispatch(setProducts(filteredProducts));
       }
     }
-  });
+  }, [checked, radio, filteredProductsQuery.data, dispatch, priceFilter]);
 
   const handleBrandClick = (brand) => {
     const productByBrand = filteredProductsQuery.data.filter(
@@ -61,7 +61,7 @@ const Shop = () => {
   };
 
   const uniqueBrands = [
-    ...Array.form(
+    ...Array.from(
       new Set(
         filteredProductsQuery.data
           ?.map((product) => product.brand)
@@ -74,7 +74,7 @@ const Shop = () => {
     setPriceFilter(e.target.value);
   };
 
-  return <div></div>;
+  return <></>;
 };
 
 export default Shop;
