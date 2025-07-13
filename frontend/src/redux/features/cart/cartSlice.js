@@ -18,7 +18,7 @@ const cartSlice = createSlice({
       const itemExists = state.cartItems.find((x) => x._id === item._id);
 
       if (itemExists) {
-        state.cartItems = state.cartItem.map((x) =>
+        state.cartItems = state.cartItems.map((x) =>
           x._id === itemExists._id ? item : x
         );
       } else {
