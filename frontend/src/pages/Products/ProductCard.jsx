@@ -53,7 +53,7 @@ const ProductCard = ({ product }) => {
             </Link>
 
             <button
-              className="p-2 rounded-full flex items-center px-3 py-2 bg-pink-700 text-white cursor-pointer"
+              className="p-2 rounded-full flex items-center px-3 py-2 bg-pink-700 hover:bg-pink-800 text-white cursor-pointer focus:ring-4 focus:outline-none focus:ring-pink-300"
               onClick={() => addToCartHandler(product, 1)}
             >
               <AiOutlineShoppingCart size={20} />
