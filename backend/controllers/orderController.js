@@ -2,8 +2,71 @@ import Order from "../models/orderModel.js";
 import Product from "../models/productModel.js";
 import asyncHandler from "../middlewares/asyncHandler.js";
 
+function calcPrices(items) {
+  const itemsPrice = items.reduce(
+    (acc, item) => acc + item.price * item.qty,
+    0
+  );
+
+  const shippingPrice = itemsPrice > 100 ? 0 : 10;
+  const taxRate = 0.15;
+  const taxPrice = parseFloat((itemsPrice * taxRate).toFixed(2));
+  const totalPrice = itemsPrice + shippingPrice + taxPrice;
+
+  return {
+    itemsPrice: itemsPrice.toFixed(2),
+    shippingPrice: shippingPrice.toFixed(2),
+    taxPrice: taxPrice.toFixed(2),
+    totalPrice: totalPrice.toFixed(2),
+  };
+}
+
 const createOrder = asyncHandler(async (req, res) => {
-  res.send("Hello from orderController");
+  const { orderItems, shippingAddress, paymentMethod } = req.body;
+
+  if (!orderItems || orderItems.length === 0) {
+    res.status(400);
+    throw new Error("No order items provided.");
+  }
+
+  const itemsFromDB = await Product.find({
+    _id: { $in: orderItems.map((x) => x._id) },
+  });
+
+  const dbOrderItems = orderItems.map((itemFromClient) => {
+    const matchingItemFromDB = itemsFromDB.find(
+      (itemFromDB) => itemFromDB._id.toString() === itemFromClient._id
+    );
+
+    if (!matchingItemFromDB) {
+      res.status(400);
+      throw new Error("Product not found.");
+    }
+
+    const { _id, ...rest } = itemFromClient;
+
+    return {
+      ...rest,
+      product: _id,
+      price: matchingItemFromDB.price,
+    };
+  });
+
+  const { itemsPrice, taxPrice, shippingPrice, totalPrice } =
+    calcPrices(dbOrderItems);
+
+  const newOrder = await Order.create({
+    orderItems: dbOrderItems,
+    user: req.user._id,
+    shippingAddress,
+    paymentMethod,
+    itemsPrice,
+    taxPrice,
+    shippingPrice,
+    totalPrice,
+  });
+
+  res.status(201).json(newOrder);
 });
 
 export { createOrder };
