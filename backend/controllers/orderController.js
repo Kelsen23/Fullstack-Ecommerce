@@ -69,4 +69,9 @@ const createOrder = asyncHandler(async (req, res) => {
   res.status(201).json(newOrder);
 });
 
-export { createOrder };
+const getAllOrders = asyncHandler(async (req, res) => {
+  const allOrders = await Order.find({});
+  res.status(200).json(allOrders)
+})
+
+export { createOrder, getAllOrders };
