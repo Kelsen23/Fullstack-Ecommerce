@@ -10,6 +10,7 @@ import {
   getAllOrders,
   getUserOrders,
   countTotalOrders,
+  calculateTotalSales
 } from "../controllers/orderController.js";
 
 router
@@ -18,5 +19,6 @@ router
   .get(authenticate, authorizedAdmin, getAllOrders);
 router.route("/mine").get(authenticate, getUserOrders);
 router.route("/total-orders").get(countTotalOrders);
+router.route("/total-sales").get(calculateTotalSales)
 
 export default router;

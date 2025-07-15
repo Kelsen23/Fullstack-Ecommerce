@@ -86,4 +86,16 @@ const countTotalOrders = asyncHandler(async (req, res) => {
   });
 });
 
-export { createOrder, getAllOrders, getUserOrders, countTotalOrders };
+const calculateTotalSales = asyncHandler(async (req, res) => {
+  const orders = await Order.find();
+  const totalSales = orders.reduce((sum, order) => sum + order.totalPrice, 0);
+  res.json({ totalSales });
+});
+
+export {
+  createOrder,
+  getAllOrders,
+  getUserOrders,
+  countTotalOrders,
+  calculateTotalSales,
+};
