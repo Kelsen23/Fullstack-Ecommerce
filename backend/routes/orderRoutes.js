@@ -12,7 +12,8 @@ import {
   countTotalOrders,
   calculateTotalSales,
   calculateTotalSalesByDate,
-  findOrderById
+  findOrderById,
+  markOrderAsPaid,
 } from "../controllers/orderController.js";
 
 router
@@ -24,5 +25,6 @@ router.route("/total-orders").get(countTotalOrders);
 router.route("/total-sales").get(calculateTotalSales);
 router.route("/total-sales-by-date").get(calculateTotalSalesByDate);
 router.route("/:id").get(authenticate, authorizedAdmin, findOrderById);
+router.route("/:id/pay").put(authenticate, authorizedAdmin, markOrderAsPaid);
 
 export default router;
