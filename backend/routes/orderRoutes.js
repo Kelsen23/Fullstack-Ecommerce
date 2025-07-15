@@ -5,8 +5,8 @@ import {
   authenticate,
   authorizedAdmin,
 } from "../middlewares/authMiddleware.js";
-import { createOrder } from "../controllers/orderController.js";
+import { createOrder, getAllOrders } from "../controllers/orderController.js";
 
-router.route("/").post(authenticate, createOrder);
+router.route("/").post(authenticate, createOrder).get(authenticate, authorizedAdmin, getAllOrders)
 
 export default router;
