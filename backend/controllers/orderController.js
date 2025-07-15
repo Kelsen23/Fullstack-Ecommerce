@@ -71,7 +71,19 @@ const createOrder = asyncHandler(async (req, res) => {
 
 const getAllOrders = asyncHandler(async (req, res) => {
   const allOrders = await Order.find({});
-  res.status(200).json(allOrders)
-})
+  res.status(200).json(allOrders);
+});
 
-export { createOrder, getAllOrders };
+const getUserOrders = asyncHandler(async (req, res) => {
+  const userOrders = await Order.find({ user: req.user._id });
+  res.status(200).json(userOrders);
+});
+
+const countTotalOrders = asyncHandler(async (req, res) => {
+  const totalOrders = await Order.countDocuments();
+  res.status(200).json({
+    totalOrders,
+  });
+});
+
+export { createOrder, getAllOrders, getUserOrders, countTotalOrders };
