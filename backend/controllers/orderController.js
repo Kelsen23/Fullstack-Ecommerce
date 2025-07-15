@@ -128,6 +128,30 @@ const findOrderById = asyncHandler(async (req, res) => {
   }
 });
 
+const markOrderAsPaid = asyncHandler(async (req, res) => {
+  const { id } = req.params;
+
+  const foundOrder = await Order.findById(id);
+
+  if (!foundOrder) {
+    const error = new Error("Order not found.");
+    error.statusCode = 404;
+    throw error;
+  } else {
+    foundOrder.isPaid = true;
+    foundOrder.paidAt = Date.now();
+    foundOrder.paymentResult = {
+      id: req.body.id,
+      status: req.body.status,
+      update_time: req.body.update_time,
+      email_address: req.body.payer.email_address,
+    };
+
+    const updatedOrder = await foundOrder.save();
+    res.status(200).json(updatedOrder);
+  }
+});
+
 export {
   createOrder,
   getAllOrders,
@@ -136,4 +160,5 @@ export {
   calculateTotalSales,
   calculateTotalSalesByDate,
   findOrderById,
+  markOrderAsPaid,
 };
