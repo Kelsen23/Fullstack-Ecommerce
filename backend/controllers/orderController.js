@@ -113,6 +113,21 @@ const calculateTotalSalesByDate = asyncHandler(async (req, res) => {
   res.status(200).json(salesByDate);
 });
 
+const findOrderById = asyncHandler(async (req, res) => {
+  const order = await Order.findById(req.params.id).populate(
+    "user",
+    "username email"
+  );
+
+  if (order) {
+    res.status(200).json(order);
+  } else {
+    const error = new Error("Order not found");
+    error.statusCode = 404;
+    throw error;
+  }
+});
+
 export {
   createOrder,
   getAllOrders,
@@ -120,4 +135,5 @@ export {
   countTotalOrders,
   calculateTotalSales,
   calculateTotalSalesByDate,
+  findOrderById,
 };
