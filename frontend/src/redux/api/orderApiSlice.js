@@ -1,4 +1,3 @@
-import { createSlice } from "@reduxjs/toolkit";
 import { apiSlice } from "./apiSlice";
 import { ORDER_URL } from "../constants";
 
@@ -53,3 +52,14 @@ export const orderApiSlice = apiSlice.injectEndpoints({
     }),
   }),
 });
+
+export const {
+  useCreateOrderMutation,
+  useGetOrderDetailsQuery,
+  usePayOrderMutation,
+  useGetMyOrdersQuery,
+  useDeliverOrderMutation,
+  useGetTotalOrdersQuery,
+  useGetTotalSalesQuery,
+  useGetTotalSalesByDateQuery,
+} = orderApiSlice;
