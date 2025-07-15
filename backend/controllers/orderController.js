@@ -92,10 +92,32 @@ const calculateTotalSales = asyncHandler(async (req, res) => {
   res.json({ totalSales });
 });
 
+const calculateTotalSalesByDate = asyncHandler(async (req, res) => {
+  const salesByDate = await Order.aggregate([
+    {
+      $match: {
+        isPaid: true,
+      },
+    },
+
+    {
+      $group: {
+        _id: {
+          $dateToString: { format: "%Y-%m-%d", date: "$paidAt" },
+        },
+        totalSales: { $sum: "$totalPrice" },
+      },
+    },
+  ]);
+
+  res.status(200).json(salesByDate);
+});
+
 export {
   createOrder,
   getAllOrders,
   getUserOrders,
   countTotalOrders,
   calculateTotalSales,
+  calculateTotalSalesByDate,
 };
