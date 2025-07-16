@@ -33,7 +33,7 @@ const Shipping = () => {
 
     dispatch(saveShippingAddress({ address, city, postalCode, country }));
     dispatch(savePaymentMethod(paymentMethod));
-    navigate("/placeholder");
+    navigate("/placeorder");
   };
 
   return (
