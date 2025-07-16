@@ -24,6 +24,7 @@ import Favorites from "./pages/Products/Favorites.jsx";
 import ProductDetails from "./pages/Products/ProductDetails.jsx";
 import Cart from "./pages/Cart.jsx";
 import Shop from "./pages/Shop.jsx";
+import Shipping from "./pages/Orders/Shipping.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -73,6 +74,14 @@ const router = createBrowserRouter(
         element={
           <PrivateRoute>
             <Shop />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/shipping"
+        element={
+          <PrivateRoute>
+            <Shipping />
           </PrivateRoute>
         }
       />
