@@ -31,78 +31,17 @@ import Order from "./pages/Orders/Order.jsx";
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />}>
-      <Route
-        path="/profile"
-        element={
-          <PrivateRoute>
-            <Profile />
-          </PrivateRoute>
-        }
-      />
-      <Route
-        path="/"
-        element={
-          <PrivateRoute>
-            <Home />
-          </PrivateRoute>
-        }
-      />
-      <Route
-        path="/favorite"
-        element={
-          <PrivateRoute>
-            <Favorites />
-          </PrivateRoute>
-        }
-      />
-      <Route
-        path="/product/:_id"
-        element={
-          <PrivateRoute>
-            <ProductDetails />
-          </PrivateRoute>
-        }
-      />
-      <Route
-        path="/cart"
-        element={
-          <PrivateRoute>
-            <Cart />
-          </PrivateRoute>
-        }
-      />
-      <Route
-        path="/shop"
-        element={
-          <PrivateRoute>
-            <Shop />
-          </PrivateRoute>
-        }
-      />
-      <Route
-        path="/shipping"
-        element={
-          <PrivateRoute>
-            <Shipping />
-          </PrivateRoute>
-        }
-      />
-      <Route
-        path="/placeorder"
-        element={
-          <PrivateRoute>
-            <PlaceOrder />
-          </PrivateRoute>
-        }
-      />
-      <Route
-        path="/order/:id"
-        element={
-          <PrivateRoute>
-            <Order />
-          </PrivateRoute>
-        }
-      />
+      <Route element={<PrivateRoute />}>
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/favorite" element={<Favorites />} />
+        <Route path="/product/:_id" element={<ProductDetails />} />
+        <Route path="/cart" element={<Cart />} />
+        <Route path="/shop" element={<Shop />} />
+        <Route path="/shipping" element={<Shipping />} />
+        <Route path="/placeorder" element={<PlaceOrder />} />
+        <Route path="/order/:_id" element={<Order />} />
+      </Route>
 
       <Route path="/admin" element={<AdminRoute />}>
         <Route path="/admin/userlist" element={<UserList />} />
