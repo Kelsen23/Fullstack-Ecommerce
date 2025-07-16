@@ -8,7 +8,7 @@ import {
 import {
   createOrder,
   getAllOrders,
-  getUserOrders,
+  getUserOrder,
   countTotalOrders,
   calculateTotalSales,
   calculateTotalSalesByDate,
@@ -21,7 +21,7 @@ router
   .route("/")
   .post(authenticate, createOrder)
   .get(authenticate, authorizedAdmin, getAllOrders);
-router.route("/mine").get(authenticate, getUserOrders);
+router.route("/mine").get(authenticate, getUserOrder);
 router.route("/total-orders").get(countTotalOrders);
 router.route("/total-sales").get(calculateTotalSales);
 router.route("/total-sales-by-date").get(calculateTotalSalesByDate);
