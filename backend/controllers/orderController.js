@@ -55,18 +55,37 @@ const createOrder = asyncHandler(async (req, res) => {
   const { itemsPrice, taxPrice, shippingPrice, totalPrice } =
     calcPrices(dbOrderItems);
 
-  const newOrder = await Order.create({
-    orderItems: dbOrderItems,
+  const existingOrder = await Order.findOne({
     user: req.user._id,
-    shippingAddress,
-    paymentMethod,
-    itemsPrice,
-    taxPrice,
-    shippingPrice,
-    totalPrice,
-  });
+    isPaid: false,
+  }).sort({ createdAt: -1 });
 
-  res.status(201).json(newOrder);
+  let order;
+
+  if (existingOrder) {
+    existingOrder.orderItems = dbOrderItems;
+    existingOrder.shippingAddress = shippingAddress;
+    existingOrder.paymentMethod = paymentMethod;
+    existingOrder.itemsPrice = itemsPrice;
+    existingOrder.taxPrice = taxPrice;
+    existingOrder.shippingPrice = shippingPrice;
+    existingOrder.totalPrice = totalPrice;
+
+    order = await existingOrder.save();
+  } else {
+    order = await Order.create({
+      orderItems: dbOrderItems,
+      user: req.user._id,
+      shippingAddress,
+      paymentMethod,
+      itemsPrice,
+      taxPrice,
+      shippingPrice,
+      totalPrice,
+    });
+  }
+
+  res.status(201).json(order);
 });
 
 const getAllOrders = asyncHandler(async (req, res) => {
@@ -74,8 +93,8 @@ const getAllOrders = asyncHandler(async (req, res) => {
   res.status(200).json(allOrders);
 });
 
-const getUserOrders = asyncHandler(async (req, res) => {
-  const userOrders = await Order.find({ user: req.user._id });
+const getUserOrder = asyncHandler(async (req, res) => {
+  const userOrders = await Order.findOne({ user: req.user._id });
   res.status(200).json(userOrders);
 });
 
@@ -172,7 +191,7 @@ const markOrderAsDelivered = asyncHandler(async (req, res) => {
 export {
   createOrder,
   getAllOrders,
-  getUserOrders,
+  getUserOrder,
   countTotalOrders,
   calculateTotalSales,
   calculateTotalSalesByDate,
