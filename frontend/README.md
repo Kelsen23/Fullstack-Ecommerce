@@ -52,7 +52,7 @@ VITE_BASE_URL=http://localhost:5000
 │   │   ├── constants.js
 │   │   ├── api/       # RTK Query API slices
 │   │   └── features/  # Non-backend state slices
-│   ├── utils/
+│   ├── Utils/
 │   │   ├── cart.js
 │   │   └── localStorage.js
 │   ├── App.jsx
