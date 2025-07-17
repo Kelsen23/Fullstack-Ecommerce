@@ -21,6 +21,7 @@ This server is built with **Node.js**, **Express**, and **MongoDB**, following a
 
 ## 📁 Folder Structure
 
+```
 ├── config/
 │ └── db.js
 ├── controllers/ 
@@ -47,7 +48,7 @@ This server is built with **Node.js**, **Express**, and **MongoDB**, following a
 │ └── findEmptyField.js
 ├── index.js 
 └── .gitignore
-
+```
 
 🖼️ Uploaded images are stored in a `/upload` folder at the **very root of the full project** (outside `/backend`).
 
