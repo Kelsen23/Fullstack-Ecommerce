@@ -22,7 +22,7 @@ The frontend interacts with the backend through **Redux Toolkit Query (RTK Query
 The frontend uses a `.env` file for its base API URL. Add this in the root of the `/frontend` directory:
 
 ```env
-VITE_BASE_URL=http://localhost:5000
+VITE_BASE_URL=https://fullstack-ecommerce-backend-ld3c.onrender.com
 ```
 
 ## 🗂️ Project Structure
@@ -80,7 +80,7 @@ These wrappers help prevent unauthorized access to sensitive pages.
 - constants.js – exports all API endpoint strings like:
 
 ```
-export const BASE_URL = "";
+export const BASE_URL = import.meta.env.VITE_BASE_URL || "";
 export const USERS_URL = "/api/users";
 export const CATEGORY_URL = "/api/category";
 export const PRODUCT_URL = "/api/products";
