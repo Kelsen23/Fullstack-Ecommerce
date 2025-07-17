@@ -26,7 +26,6 @@ import Cart from "./pages/Cart.jsx";
 import Shop from "./pages/Shop.jsx";
 import Shipping from "./pages/Orders/Shipping.jsx";
 import PlaceOrder from "./pages/Orders/PlaceOrder.jsx";
-import Order from "./pages/Orders/Order.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -40,7 +39,6 @@ const router = createBrowserRouter(
         <Route path="/shop" element={<Shop />} />
         <Route path="/shipping" element={<Shipping />} />
         <Route path="/placeorder" element={<PlaceOrder />} />
-        <Route path="/order/mine" element={<Order />} />
       </Route>
 
       <Route path="/admin" element={<AdminRoute />}>

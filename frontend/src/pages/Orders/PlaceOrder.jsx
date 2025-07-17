@@ -34,7 +34,6 @@ const PlaceOrder = () => {
         totalPrice: cart.totalPrice,
       }).unwrap();
       dispatch(clearCartItems());
-      navigate(`/order/mine`);
     } catch (error) {
       toast.error(
         error?.data?.error || error?.error || "Failed to place order."
