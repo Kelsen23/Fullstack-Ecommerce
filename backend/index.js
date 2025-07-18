@@ -1,4 +1,5 @@
 import path from "path";
+import fs from 'fs';
 import express from "express";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
@@ -22,6 +23,12 @@ app.use(
     credentials: true,
   })
 );
+
+const uploadDir = path.join(process.cwd(), '/uploads');
+
+if (!fs.existsSync(uploadDir)) {
+  fs.mkdirSync(uploadDir);
+}
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
