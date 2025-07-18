@@ -1,5 +1,5 @@
 import path from "path";
-import fs from 'fs';
+import fs from "fs";
 import express from "express";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
@@ -24,7 +24,7 @@ app.use(
   })
 );
 
-const uploadDir = path.join(process.cwd(), '/uploads');
+const uploadDir = path.join(process.cwd(), "/uploads");
 
 if (!fs.existsSync(uploadDir)) {
   fs.mkdirSync(uploadDir);
