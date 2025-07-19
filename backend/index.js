@@ -19,7 +19,10 @@ const app = express();
 
 app.use(
   cors({
-    origin: ["http://localhost:5173", "https://fullstack-ecommerce-frontend-l5qg.onrender.com"],
+    origin: [
+      "http://localhost:5173",
+      "https://fullstack-ecommerce-frontend-l5qg.onrender.com",
+    ],
     credentials: true,
   })
 );
