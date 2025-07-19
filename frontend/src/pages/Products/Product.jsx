@@ -2,10 +2,14 @@ import { Link } from "react-router-dom";
 import HeartIcon from "./HeartIcon";
 
 const Product = ({ product }) => {
+  const imageUrl = product.image.startsWith("http")
+    ? product.image
+    : `${import.meta.env.VITE_BASE_URL}${product.image}`;
+
   return (
     <div className="w-[30rem] ml-[2rem] p-3 relative">
       <img
-        src={product.image}
+        src={imageUrl}
         alt={product.name}
         className="w-[20rem] h-[13rem] rounded"
       />

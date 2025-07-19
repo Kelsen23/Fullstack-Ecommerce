@@ -5,7 +5,7 @@ const SmallProduct = ({ product }) => {
     <div className="w-[19rem] ml-[2rem] p-3">
       <div className="relative">
         <img
-          src={product.image}
+          src={`${import.meta.env.VITE_BASE_URL}${product.image}`}
           alt={product.name}
           className="h-[11rem] w-[16rem] rounded"
         />

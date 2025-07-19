@@ -23,7 +23,7 @@ const ProductCard = ({ product }) => {
           </span>
           <img
             className="cursor-pointer w-full h-[170px] object-cover rounded"
-            src={product.image}
+            src={`${import.meta.env.VITE_BASE_URL}${product.image}`}
             alt={product.name}
           />
         </Link>

@@ -94,7 +94,7 @@ const ProductDetails = () => {
               <div className="flex w-full justify-center mt-[2rem]">
                 <div>
                   <img
-                    src={product.image}
+                    src={`${import.meta.env.VITE_BASE_URL}${product.image}`}
                     alt={product.name}
                     className="w-[35rem] h-[25rem] mr-[2rem] rounded"
                   />
