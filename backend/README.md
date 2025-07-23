@@ -121,4 +121,4 @@ npm run dev
 
 ## API Base URL
 
-http:/fullstack-ecommerce-backend-ld3c.onrender.com/api
+https:/fullstack-ecommerce-backend-ld3c.onrender.com/api
