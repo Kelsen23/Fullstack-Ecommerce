@@ -64,3 +64,8 @@ More detailed setup instructions are in each folder’s own README.
 - Add product stock tracking and order status updates.
 - Improve mobile responsiveness.
 - Enhance admin dashboard with analytics.
+
+## ⚠️ Important Note
+
+Images uploaded using Multer are stored locally on the server.
+If deployed on Render or similar platforms without persistent storage, images may be lost after some time due to temporary storage limitations.
