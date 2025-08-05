@@ -68,4 +68,4 @@ More detailed setup instructions are in each folder’s own README.
 ## ⚠️ Important Note
 
 Images uploaded using Multer are stored locally on the server.
-Deployed on Render so without persistent storage, images may be lost after some time due to temporary storage limitations.
+Project is deployed on Render so without persistent storage, images may be lost after some time due to temporary storage limitations.
